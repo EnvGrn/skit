@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+  <head>
+    <title>Virtual Keyboard</title>
+        <link href="key.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Stylish" rel="stylesheet">
+  </head>
+  <body>
+    <input id="result" autofocus>
+	<div class="keyboard">
+
+		<div class="row">
+			<div class="key"><span>§</span><sup>±</sup></div>
+			<div class="key"><span>1</span><sup>!</sup></div>
+			<div class="key"><span>2</span><sup>@</sup></div>
+			<div class="key"><span>3</span><sup>£</sup></div>
+			<div class="key"><span>4</span><sup>$</sup></div>
+			<div class="key"><span>5</span><sup>%</sup></div>
+			<div class="key"><span>6</span><sup>^</sup></div>
+			<div class="key"><span>7</span><sup>?</sup></div>
+			<div class="key"><span>8</span><sup>*</sup></div>
+			<div class="key"><span>9</span><sup>(</sup></div>
+			<div class="key"><span>0</span><sup>)</sup></div>
+			<div class="key"><span>-</span><sup>_</sup></div>
+			<div class="key"><span>=</span><sup>+</sup></div>
+			<div class="key backspace"><span> <– </span></div>
+		</div>
+
+		<div class="row">
+			<div class="key tab"><span>Tab</span></div>
+			<div class="key"><span>q</span></div>
+			<div class="key"><span>w</span></div>
+			<div class="key"><span>e</span></div>
+			<div class="key"><span>r</span></div>
+			<div class="key"><span>t</span></div>
+			<div class="key"><span>y</span></div>
+			<div class="key"><span>u</span></div>
+			<div class="key"><span>i</span></div>
+			<div class="key"><span>o</span></div>
+			<div class="key"><span>p</span></div>
+			<div class="key"><span>[</span></div>
+			<div class="key"><span>]</span></div>
+		</div>
+
+		<div class="row">
+			<div class="key capslock"><span>Caps Lock</span></div>
+			<div class="key"><span>a</span></div>
+			<div class="key"><span>s</span></div>
+			<div class="key"><span>d</span></div>
+			<div class="key"><span>f</span></div>
+			<div class="key"><span>g</span></div>
+			<div class="key"><span>h</span></div>
+			<div class="key"><span>j</span></div>
+			<div class="key"><span>k</span></div>
+			<div class="key"><span>l</span></div>
+			<div class="key"><span>;</span></div>
+			<div class="key"><span>'</span></div>
+		</div>
+
+		<div class="row">
+			<div class="key shift"><span>Shift</span></div>
+			<div class="key"><span>z</span></div>
+			<div class="key"><span>x</span></div>
+			<div class="key"><span>c</span></div>
+			<div class="key"><span>v</span></div>
+			<div class="key"><span>b</span></div>
+			<div class="key"><span>n</span></div>
+			<div class="key"><span>m</span></div>
+			<div class="key"><span>,</span></div>
+			<div class="key"><span>.</span></div>
+			<div class="key"><span>/</span></div>
+		</div>
+
+		<div class="row">
+			<div class="key space"></div>
+		</div>
+
+	</div>
+
+  <script>
+
+    $(document).ready(function(){
+
+	var capslock = false;
+	var shift = false;
+	var key;
+
+	$('.keyboard .key').click(function(){
+
+		key = $(this).find('span').text();
+
+
+		if( key == '.key backspace' || key == '.key tab' || key == '.key capslock' || key == '.key shift' || key == '' ){
+
+			if( key == '.key backspace' ){
+				$('#result').val( $('#result').val().substr(0, $('#result').val().length - 1) ).focus();
+			}
+
+			if( key == '.key tab' ){
+				$('#result').val( $('#result').val() + '       ' ).focus();
+			}
+
+			if( key == '.key capslock' ){
+
+				if('.key capslock'){
+					$('.key capslock').css('color','#929292');
+          if(',key capslock') key = key.toUpperCase();
+					capslock = false;
+				}
+        else{
+					$('.key capslock').css('color','#ffffff');
+					capslock = true;
+				}
+			}
+
+			if( key == '.key shift' ){
+
+				if('.key shift'){
+					$('.key shift').css('color','#929292');
+          if(shift) key = $(this).find('sup').text();
+					shift = false;
+				}
+
+        else{
+					$('.key shift').css('color','red');
+					shift = true;
+				}
+			}
+
+			if( key == '' ){
+				$('#result').val( $('#result').val() + ' ' ).focus();
+			}
+
+		}
+
+    else{
+			$('#result').val( $('#result').val() + key ).focus();
+		}
+	});
+});
+
+</script>
+
+  </body>
+</html>
